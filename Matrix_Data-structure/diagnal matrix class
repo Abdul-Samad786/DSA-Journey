@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+class Diagnal{
+private:
+  int n;
+int *A;
+public:
+Diagnal(int n){
+  this->n=n;
+  A=new int[n];
+}
+~Diagnal(){
+  delete[]A;
+}
+void set(int i,int j,int x);
+int retrive(int i,int j);
+void display();
+};
+void Diagnal ::set(int i,int j,int x){
+ if(i==j)
+   A[i-1]=x;
+}
+//int Diagnal::retrieve(int i,int j){
+  //if(i==j)
+  //  return A[i-1];
+//}
+void Diagnal::display(){
+    int i,j;
+    for(i=1;i<5;i++){
+      for(j=1;j<5;j++){
+        if(i==j)
+          cout<<A[i-1];
+        else
+          cout<<0;
+        cout<<"  ";
+      }
+      cout<<endl;
+    }
+  }
+  
+int main(){
+  Diagnal d(4);
+  d.set(1,1,2);
+  d.set(2,2,4);
+  d.set(3,3,6);
+  d.set(4,4,8);
+  d.display();
+  return 0;
+  
+}
