@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+int delete_element(int Array[],int n);
+void insert(int Array[],int n){
+  int i=n;;
+  int x=Array[n];
+  while(i>1&&x>Array[i/2]){
+    Array[i]=Array[i/2];
+    i=i/2;
+  }
+  Array[i]=x;
+}
+
+int main(){
+  int A[]={0,10,20,30,25,5,40,35};
+  for(int i=2;i<=7;i++){
+    insert(A,i);
+  }
+  //delete_element(A,7);
+  cout<<"heap elements are"<<endl;
+  for(int i=1;i<=7;i++)
+    cout<<A[i]<<endl;
+  cout<<"deleted elements are:"<<delete_element(A,7)<<endl;
+
+  for(int i=1;i<=6;i++)
+    cout<<A[i]<<endl;
+  return 0;
+}
+int delete_element(int Array[],int n){
+  int i=1,j=2*i,temp,deleled_element;
+  deleled_element=Array[1];
+  Array[1]=Array[n];
+  while(j <n-1){
+    if(Array[j+1]>Array[j])
+      Array[j++];
+    if(Array[i]<Array[j]){
+      temp=Array[i];
+      Array[i]=Array[j];
+      Array[j]=temp;
+      i=j;
+      j=i*2;
+    }
+    else
+      break;
+  }
+  return deleled_element;
+}
