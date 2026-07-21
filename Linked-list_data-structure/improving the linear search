@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+struct node{
+int value;
+node *next;
+}*first;
+void create(int *p,int n){
+  int i;
+  node *last,*t;
+  first=new node;
+  first->value=p[0];
+  first->next=NULL;
+  last=first;
+  for(i=1;i<n;i++){
+    t=new node;
+    t->value=p[i];
+    t->next=NULL;
+    last->next=t;
+    last=t;
+  }
+}
+void display(node *p){
+  cout<<"data is:"<<endl;
+  while(p!=NULL){
+    cout<<p->value<<"  ";
+    p=p->next;
+  }
+}
+void improving(node *p,int nmbr){
+  node *q;
+  while(p!=NULL){
+  if(p->value==nmbr){
+    q->next=p->next;
+    p->next=first;
+    first=p;
+  }
+  q=p;
+  p=p->next;
+  }
+}
+int main(){
+  int Array[]={5,10,11,12,16};
+  int length=5;
+  create(Array,length);
+  improving(first,12);
+  display(first);
+  cout<<first->value;
+  return 0;
+}

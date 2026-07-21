@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int value;
+  node *next;
+}*first=NULL;
+node* insertion(node *p,int x,node *last){
+  if(first==NULL){
+    node *t;
+    t=new node;
+    t->value=x;
+    t->next=NULL;
+    first=t;
+    last=first;
+    return last;
+  }
+  else{
+    node *temp;
+    temp=new node;
+    temp->value=x;
+    last->next=temp;
+    last=temp;
+    return last;
+  }
+}
+void display(node *p){
+  while(p){
+    cout<<p->value<<endl;
+    p=p->next;
+  }
+}
+int main(){
+node *last;
+  last=NULL;
+  last=insertion(first,54,last);
+  last=insertion(first,33,last);
+  last=insertion(first,54554,last);
+  display(first);
+  return 0;
+}

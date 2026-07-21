@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int value;
+  node *next;
+}*first=NULL;
+
+node* insertlast(int nmbr,node *last){
+  node *temp;
+  temp=new node;
+  temp->value=nmbr;
+  temp->next=NULL;
+  if(first==NULL){
+    first=last=temp;
+    return last;
+  }
+  else{
+    last->next=temp;
+    last=temp;
+    return last;
+  }
+}
+void display(node *p){
+  while(p){
+    cout<<p->value<<endl;
+    p=p->next;
+  }
+}
+int main(){
+node *last;
+  last=NULL;
+  last=insertlast(12,last);
+  last=insertlast(43,last);
+  last=insertlast(65,last);
+  display(first);
+  return 0;
+}

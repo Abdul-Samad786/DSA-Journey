@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+struct node{
+int value;
+node *next;
+node *prev;
+} *head;
+void circular_double(int A[],int size){
+  node *last,*temp;
+  head=new node;
+  head->value=A[0];
+  head->next=head->prev=NULL;
+  last=head;
+  for(int i=1;i<size;i++){
+    temp=new node;
+    temp->value=A[i];
+    last->next=temp;
+    temp->prev=last;
+    temp->next=NULL;
+    last=temp;
+  }
+  last->next=head;
+  head->prev=last;
+}
+void display(node *h){
+  do{
+    cout<<h->value<<endl;
+    h=h->next;
+  }while(h!=head);
+}
+void deletion(int index){
+  node *p=head;
+  if(index==1){
+    p->prev->next=p->next;
+    head=p->next;
+    head->prev=p->prev;
+    delete p;
+  }
+  else{
+    for(int i=1;i<index;i++){
+      p=p->next;
+      
+    }
+    p->prev->next=p->next;
+  //  if(p->next){
+    //checking of last node if it has last node pointer NULL or not
+      p->next->prev=p->prev;
+  }
+    delete p;
+  }
+}
+int main(){
+  int Array[]={2,4,5,7,8};
+  int length=5;
+  circular_double(Array,length);
+  deletion(5);
+  display(head);
+  return 0;
+}

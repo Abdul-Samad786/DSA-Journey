@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+struct node{
+int data;
+node *next;
+node *pre;
+}*first;
+void double_list(int A[],int size){
+  node *temp,*last;
+  first=new node;
+  first->data=A[0];
+  first->pre=first->next=NULL;
+  last=first;
+  for(int i=1;i<size;i++){
+    temp=new node;
+    temp->data=A[i];
+    temp->pre=last;
+    temp->next=NULL;
+    last->next=temp;
+    last=temp;
+  }
+}
+void display(node *p){
+  while(p){
+    cout<<p->data<<endl;
+    p=p->next;
+  }
+}
+void display2(node *p){
+  while(p->next!=NULL){
+    p=p->next;
+  }
+  while(p){
+    cout<<p->data<<endl;
+    p=p->pre;
+  }
+}
+void insertion(node *p,int index,int number){
+  node *temp;
+  temp=new node;
+  temp->data=number;
+  temp->next=temp->pre=NULL;
+  if(index==0){
+    temp->pre=NULL;
+    temp->next=first;
+    first=temp;
+  }
+  else{
+    for(int i=1;i<index;i++){
+      p=p->next;
+    }
+    temp->pre=p;
+    temp->next=p->next;
+    if(p->next)p->next->pre=temp;
+    p->next=temp;
+  }
+}
+int main(){
+  int Array[]={12,44,56,44,323};
+  int length=5;
+  double_list(Array,length);
+  insertion(first,3,111);
+  display(first);
+  return 0;
+}

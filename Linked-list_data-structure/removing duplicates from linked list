@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+struct node{
+int value;
+node *next;
+}*first;
+void create(int *p,int n){
+  int i;
+  node *last,*t;
+  first=new node;
+  first->value=p[0];
+  first->next=NULL;
+  last=first;
+  for(i=1;i<n;i++){
+    t=new node;
+    t->value=p[i];
+    t->next=NULL;
+    last->next=t;
+    last=t;
+  }
+}
+void display(node *p){
+  cout<<"data is:"<<endl;
+  while(p!=NULL){
+    cout<<p->value<<endl;
+    p=p->next;
+  }
+}
+void duplicate(node *a){
+  node *b;
+  b=a->next;
+  while(b){
+    if(a->value!=b->value){
+      a=b;
+      b=b->next;
+    }
+    else{
+      a->next=b->next;
+      delete b;
+      b=a->next;
+    
+  }
+}
+}
+int main(){
+  int Array[]={5,10,10,12,12};
+  int length=5;
+  create(Array,length);
+  cout<<"Before is:";
+  display(first);
+  duplicate(first);
+  cout<<"After is:";
+  display(first);
+  return 0;
+}
