@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int for_negative(int *p,int length){
+  int negative=0;
+  for(int i=0;i<length;i++){
+    if(p[i]<0)
+      negative=negative+1;
+}
+  return negative;}
+int for_positive(int *p,int length){
+  int positive=0;
+  for(int i=0;i<length;i++){
+    if(p[i]>0)
+      positive=positive+1;
+  }
+  return positive;
+}
+int main(){
+  int A[]={4,5,-14,-15,-1,-2,-4,-5,1,2,5,5,6,7,8};
+  int length=16 ;
+ int a=for_negative(A,length);
+  int b=for_positive(A,length);
+  cout<<a<<"  "<<b<<endl;
+  return 0;
+}

@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+int main(){
+  int Array[]={1,2,2,3,5,5,5};
+  int length=7;
+  int duplicate=0;
+  for(int i=0;i<length-1;i++){
+    if(Array[i]==Array[i+1]&&Array[i]!=duplicate)
+    cout<<Array[i]<<endl;
+    duplicate=Array[i];
+  }
+  return 0;
+}

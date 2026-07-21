@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+void average(int sum);
+int sum(int *p){
+  int sum=0;
+  for(int i=0;i<10;i++){
+    sum=p[i]+sum;
+  }
+  average(sum);
+    return 0;
+}
+void average(int sum){
+  cout<<"Average is:"<<sum/10.0;
+  
+}
+int main(){
+  int A[]={1,2,3,4,5,6,7,8,9,10};
+  sum(A);
+  return 0;
+}

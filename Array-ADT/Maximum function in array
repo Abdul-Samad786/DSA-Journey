@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int MAx(int *A){
+  int max=0;
+  for(int i=1;i<10;i++){
+    if(A[i]>max){
+      max=A[i];
+    }
+  }
+  return max;
+}
+int main(){
+  int A[]={3,6,7,8,5,34,65,976,876,76};
+  int length=10;
+  int r=MAx(A);
+  cout<<r<<endl;
+  return 0;
+}

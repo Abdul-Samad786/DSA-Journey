@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int Rbinary_search(int *p,int key,int l,int h);
+int main(){
+  int A[]={3,5,6,7,9,11,12,13,16,19,21};
+  int length=11;
+  int r=Rbinary_search(A,25,0, length-1);
+  cout<<r<<endl;
+  return 0;
+}
+  int Rbinary_search(int *p,int key,int l,int h){
+    if(l<=h){
+     int mid=(l+h)/2;
+      if(key==p[mid]){
+        return mid;
+      }
+      else if(key<p[mid]){
+        return Rbinary_search(p,key,l,mid-1);
+      }
+      else
+        return Rbinary_search(p,key,mid+1,h);
+      
+    }
+    return -1;
+  }

@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int get(int *p,int index){
+  if(index>=0 && index<10)
+    return p[index];
+  return -1;
+}
+int main(){
+  int A[]={3,6,7,8,5,34,65,76,876,76};
+  int length=10;
+  int r=get(A,9);
+  cout<<r<<endl;
+  return 0;
+}

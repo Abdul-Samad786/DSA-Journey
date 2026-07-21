@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+int main() {
+  int Array[] = {3, 4, 5, 6, 8, 9, 10, 11};
+  int length = 8;
+  int l = 3;
+  int diffrence = l - 0;
+  for (int i = 0; i < length - 1; i++) {
+    if (Array[i] - i != diffrence){
+    
+      cout << "missing number is:" << i + diffrence << endl;
+      break;
+    }
+  }
+  return 0;
+}
