@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+class stack{
+public:
+  int top;
+  int size;
+  char *A;
+  stack(int s){
+    top=-1;
+    size=s;
+    A=new char[size];
+  }
+void push(char x,stack *sta);
+void pop(stack *sta);
+int is_balanced(char *expression,stack *sta);
+};
+void stack::push(char x,stack *sta){
+  if(sta->top==sta->size-1){
+    cout<<"STAck overflow";
+    return;}
+  sta->top++;
+  sta->A[sta->top]=x;
+}
+void stack::pop(stack *sta){
+  if(sta->top==-1){
+    cout<<"stack underflow";
+  return;}
+  sta->top--;
+}
+int stack:: is_balanced(char *expression,stack *sta){
+  for(int i=0;expression[i]!='\0';i++){
+    if(expression[i]=='(') 
+      sta->push(expression[i],sta);
+   else if(expression[i]==')'){
+     if(sta->top==-1){
+       cout<<"stack underflow";
+       return 0;}
+    sta->pop(sta);
+   }
+  }
+  if(sta->top==-1)
+     return 1;
+  else{
+     cout << "Stack has unmatched opening parenthesis" << endl;
+        return 0;
+  }
+  
+}
+int main(){
+  stack st(8);
+  char expression[]="((a+b)+()";
+  if(st.is_balanced(expression,&st))
+    cout<<"pareanthesis are balanced";
+  else
+    cout<<"paranthesis are not balanced";
+  return 0;
+}

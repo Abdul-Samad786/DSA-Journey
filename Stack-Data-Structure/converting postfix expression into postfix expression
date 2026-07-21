@@ -1,0 +1,78 @@
+#include <iostream>
+using namespace std;
+
+class stack {
+public:
+  int size;
+  char *Array;
+  int top;
+  stack(int s) {
+    size = s;
+    top = -1;
+    Array = new char[size];
+  }
+  void push(char x, struct stack *sta);
+  int pull(stack *sta);
+};
+int is_operand(char a) {
+  if (a == 'a' || a == 'b' || a == 'f' || a == 'c' || a == 'd')
+    return 0;
+  else
+    return 1;
+}
+int precendnce(char b) {
+  if (b == '+' || b == '-')
+    return 1;
+  else if (b == '*' || b == '/')
+    return 2;
+  else
+    return 0;
+}
+int is_empty(stack *st);
+char *conversion(char *infix, stack *sta) {
+  char *postfix;
+  postfix = new char[11];
+  int j = 0;
+  for (int i = 0; infix[i] != '\0'; i++) {
+    if (is_operand(infix[i]))
+      postfix[j++] = infix[i++];
+    else {
+      if (precendnce(infix[i]) > precendnce(sta->Array[sta->top]))
+        sta->push(infix[i++], sta);
+      else
+        postfix[j++] = sta->pull(sta);
+    }
+  }
+  while (!::is_empty(sta)) {
+    postfix[j++] = sta->pull(sta);
+  }
+  postfix[j] = '\0';
+  return postfix;
+}
+int main() {
+  stack st(10);
+  st.push('x', &st);
+  char expression[] = "a+b-f/c*d";
+  char *a = conversion(expression, &st);
+  cout << a << endl;
+  return 0;
+}
+void stack::push(char x, stack *sta) {
+  if (sta->top == sta->size - 1)
+    cout << "stack overflow";
+  sta->top++;
+  sta->Array[sta->top] = x;
+}
+int stack::pull(stack *sta) {
+  int x;
+  if (sta->top == -1)
+    cout << "stack underflow";
+  x = sta->Array[sta->top--];
+  return x;
+}
+int is_empty(stack *st) {
+  if (st->top == -1)
+    return 1;
+  else
+    return 0;
+}
