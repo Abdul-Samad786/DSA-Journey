@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int data;
+  node *lchild;
+  node *rchild;
+}*root;
+node* R_insertion(node *p,int key){
+  node *temp;
+  if(p==NULL){
+    temp=new node;
+    temp->data=key;
+    temp->lchild=temp->rchild=NULL;
+ 
+    return temp;
+}
+  if(key<p->data)
+    p->lchild=R_insertion(p->lchild, key);
+  else if(key>p->data)
+    p->rchild=R_insertion(p->rchild, key);
+  return p;
+}
+void R_Inorder(node *p){
+  if(p!=NULL){
+    R_Inorder(p->lchild);
+    cout<<p->data<<endl;
+    R_Inorder(p->rchild);
+  }
+  
+}
+void Iterative_BST(int x){
+  node *p=root,*tail=NULL;
+  node *temp;
+  if(root==NULL){
+    temp=new node;
+    temp->data=x;
+  temp->lchild=temp->rchild=NULL;
+    root=temp;
+  return;}
+  while(p!=NULL){
+    tail=p;
+    if(x<p->data)
+      p=p->lchild;
+    else if(x>p->data)
+      p=p->rchild;
+    else
+      return;
+  }
+  temp=new node;
+  temp->data=x;
+  temp->lchild=temp->rchild=NULL;
+  if(x<tail->data)
+    tail->lchild=temp;
+  else
+    tail->rchild=temp;
+}
+
+node* Searching(int x){
+  node *p=root;
+  while(p){
+    if(x==p->data)
+      return p;
+    else if(x<p->data)
+      p=p->lchild;
+    else
+      p=p->rchild;
+  }
+  return NULL;
+}
+int main(){
+  // root=R_insertion(root,10);
+  // R_insertion(root,15);
+  // R_insertion(root, 30);
+  // R_insertion(root, 5);
+  // R_insertion(root,60);
+  Iterative_BST(5);
+  Iterative_BST(10);
+  Iterative_BST(15);
+  Iterative_BST(20);
+  Iterative_BST(25);
+  cout<<"Elements are:"<<endl;
+  R_Inorder(root);
+  //node *t=Searching(65);
+  //cout<<t<<endl;
+  
+  return 0;
+}

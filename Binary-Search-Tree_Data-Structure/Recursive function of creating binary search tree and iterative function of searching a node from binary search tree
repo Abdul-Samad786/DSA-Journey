@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int data;
+  node *lchild;
+  node *rchild;
+}*root;
+node* R_insertion(node *p,int key){
+  node *temp;
+  if(p==NULL){
+    temp=new node;
+    temp->data=key;
+    temp->lchild=temp->rchild=NULL;
+ 
+    return temp;
+}
+  if(key<p->data)
+    p->lchild=R_insertion(p->lchild, key);
+  else if(key>p->data)
+    p->rchild=R_insertion(p->rchild, key);
+  return p;
+}
+void R_Inorder(node *p){
+  if(p!=NULL){
+    R_Inorder(p->lchild);
+    cout<<p->data<<endl;
+    R_Inorder(p->rchild);
+  }
+  
+}
+node* Searching(int x){
+  node *p=root;
+  while(p){
+    if(x==p->data)
+      return p;
+    else if(x<p->data)
+      p=p->lchild;
+    else
+      p=p->rchild;
+  }
+  return NULL;
+}
+int main(){
+  root=R_insertion(root,10);
+  R_insertion(root,15);
+  R_insertion(root, 30);
+  R_insertion(root, 5);
+  R_insertion(root,60);
+  cout<<"Elements are:"<<endl;
+  R_Inorder(root);
+  node *t=Searching(65);
+  cout<<t<<endl;
+
+  return 0;
+}

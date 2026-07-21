@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+struct node{
+  int data;
+  node *lchild;
+  node *rchild;
+}*root=NULL;
+struct stack{
+  node **A;
+  int top;
+  int size;
+  int is_empty(stack *st){
+    if(st->top==-1)
+      return 1;
+    else
+      return 0;
+  }
+  stack(int s){
+    size=s;
+    A=new node*[size];
+    top=-1;
+  }
+};
+void push(node *A,stack *sta){
+  if(sta->top==sta->size-1)
+    cout<<"Stack overflow"<<endl;
+  sta->top++;
+  sta->A[sta->top]=A;
+}
+node* pop(stack *sta){
+  node *x;
+  if(sta->top==-1)
+    cout<<"Stack underflow"<<endl;
+  else
+    x=sta->A[sta->top--];
+  return x;
+}
+void binary_pre(int pre[],int n){
+  int i=1;
+  node *p,*temp;
+   stack st(10);
+   root=new node;
+  root->data=pre[0];
+  root->lchild=root->rchild=NULL;
+  p=root;
+  while(i<n){
+    if(pre[i]<p->data){
+      temp=new node;
+    temp->data=pre[i++];
+    temp->lchild=temp->rchild=NULL;
+
+    p->lchild=temp;
+    temp=p;}
+    else if(pre[i]>p->data && st.A[st.top] ){
+      temp=new node;
+      temp->data=pre[i++];
+      temp->lchild=temp->rchild=NULL;
+      p->rchild=temp;
+      p=temp;   
+    }
+    else
+      p=pop(&st);
+  }
+
+}
+void inorder(node *p){
+  stack s(10);
+  while(p || !s.is_empty(&s)){
+    if(p){
+      push(p,&s);
+    p=p->lchild;
+    }
+    else{
+      p=pop(&s);
+      cout<<p->data<<endl;
+      p=p->rchild;
+    }
+  }
+}
+
+int main(){
+  int Array[]={2,1,4,5,6,7,8};
+  int size=7;
+  binary_pre(Array,size);
+  inorder(root);
+  return 0;
+}
