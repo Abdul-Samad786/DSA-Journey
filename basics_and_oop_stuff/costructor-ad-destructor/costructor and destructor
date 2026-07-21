@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+class Square{
+public:
+int name;
+Square(){
+  this->name=5;
+  cout<<"jhfggf";
+}
+~Square(){
+cout<<"itisede";
+}
+};
+int main() {
+  Square *s;
+  s=new Square();
+  return 0;
+}
