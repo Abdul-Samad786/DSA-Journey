@@ -1,0 +1,112 @@
+#include <iostream>
+using namespace std;
+struct Node{
+  int data;
+  Node *lchid;
+  Node *rchild;
+};
+Node *root=NULL;
+class Queue{
+public:
+  int size;
+  int front;
+  int rear;
+  Node **Q;
+  Queue(int s){
+    this->size=s;
+    front=rear=-1;
+    Q=new Node* [size];
+  }
+  void enqueue(Queue *q,Node *x);
+  Node* dequeue(Queue *q);
+  int is_empty(Queue *q);
+};
+void Queue::enqueue(Queue *q,Node *x){
+  if(q->rear==q->size-1)
+    cout<<"Queue is full"<<endl;
+  q->rear++;
+  q->Q[q->rear]=x;
+}
+Node* Queue:: dequeue(Queue *q){
+  Node *x=NULL;
+  if(q->front==q->rear)
+    cout<<"Queue is empty"<<endl;
+  else{
+  q->front++;
+  x=q->Q[q->front];
+}
+  return x;}
+int Queue::is_empty(Queue *q){
+  // if(q->front==q->rear)
+  //   return 0;
+  // else
+  //   return 1;
+   return q->front==q->rear;
+}
+void create_tree(){
+  Node *p,*temp;
+  int x;
+  Queue q(50);
+  root=new Node;
+  root->data=5;
+  root->lchid=root->rchild=NULL;
+  q.enqueue(&q,root);
+  while(!q.is_empty(&q)){
+    p=q.dequeue(&q);
+    cout<<"Enter the left child of:"<<p->data<<endl;
+    cin>>x;
+    cout<<endl;
+    if(x!=-1){
+      temp=new Node;
+      temp->data=x;
+      temp->lchid=temp->rchild=NULL;
+      p->lchid=temp;
+      q.enqueue(&q,temp);
+    }
+    cout<<"Enter right child of:"<<p->data<<endl;
+    cin>>x;
+    cout<<endl;
+    if(x!=-1){
+      temp=new Node;
+      temp->data=x;
+      temp->lchid=temp->rchild=NULL;
+      p->rchild=temp;
+      q.enqueue(&q,temp);
+    }
+  }
+}
+void preorder(Node *p){
+  if(p){
+        cout<<p->data<<endl;
+      preorder(p->lchid);
+    preorder(p->rchild);
+  }
+}
+int counting(Node *p){
+  int x,y;
+  if(p!=NULL){
+    x=counting(p->lchid);
+    y=counting(p->rchild);
+    return x+y+1;
+  }
+  return 0;
+}
+int height(Node *p){
+  int x,y;
+  if(p!=NULL){
+    x=height(p->lchid);
+    y=height(p->rchild);
+    if(x>y)
+      return x+1;
+    else
+      return y+1;}
+  return 0;
+  }
+
+int main(){
+  create_tree();
+  preorder(root);
+  //cout<<"total number of nodes are:"<<counting(root)<<endl;
+  cout<<"total height of nodes are:"<<height(root)<<endl;
+  return 0;
+}
