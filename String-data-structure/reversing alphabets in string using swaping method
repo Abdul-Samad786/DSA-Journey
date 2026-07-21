@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int main(){
+  char Array[]={'A','b','d','u','l'};
+  int length=5;
+  int temp;
+  for(int i=0,j=4;i<j;i++,j--){
+    temp=Array[i];
+    Array[i]=Array[j];
+    Array[j]=temp;
+  }
+  cout<<Array<<endl;
+  return 0;
+}

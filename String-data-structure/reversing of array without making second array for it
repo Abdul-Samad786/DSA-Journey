@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int reversing(char *p, int length) {
+    int i, j, temp;
+    for (i = 0, j = length - 1; i < j; i++, j--) {
+        temp = p[i];
+        p[i] = p[j];
+        p[j] = temp;
+    }
+    return 0;
+}
+
+int main() {
+    char Array[] = {'a', 'b', 'c', 'd', 'e', '\0'};
+    int length = 6;
+    reversing(Array, length);
+    cout << Array << endl;
+    return 0;
+}

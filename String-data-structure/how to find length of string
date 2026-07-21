@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+int main(){
+  char a[]{'A','b','d','u','l','\0'};
+  int i;
+  for(int i=0;a[i]!='\0';i++){
+    
+  }
+  cout<<"length is:"<<i<<endl;
+  return 0;
+}

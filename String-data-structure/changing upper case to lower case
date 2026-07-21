@@ -1,0 +1,10 @@
+#include <iostream>
+using namespace std;
+int main(){
+  char a[]={'A','B','D','U','L','_','S','A','M','A','D','\0'};
+  int length=11;
+  for(int i=0;a[i]!='\0';i++)
+    a[i]=a[i]+32;
+  cout<<a<<endl;
+  return 0;
+}

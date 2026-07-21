@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+void comparing(char *p,char *q,int length){
+  int i,j;
+  for(i=0,j=0;p[i]!='\0';i++,j++){
+    if(p[i]!=q[j])
+      break;
+  }
+  if(p[i]==q[j])
+    cout<<"Arrays are equal";
+  else if(p[i]<q[j])
+    cout<<"second array is greater";
+  else
+    cout<<"first is greater";
+}
+int main(){
+  char Array1[]={'a','b','c','d','e','f','\0'};
+  char Array2[]={'a','b','c','d','e','f','\0'};
+  int length=7;
+  comparing(Array1,Array2,length);
+  return 0;
+}

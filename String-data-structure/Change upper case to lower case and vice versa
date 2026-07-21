@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main(){
+  char Array[]={'A','b','D','u','L','_','s','A','m','A','d','\0'};
+  int length=12;
+  for(int i=0;Array[i]!='\0';i++){
+    if(Array[i]>=65&&Array[i]<=90)
+      Array[i]=Array[i]+32;
+  
+  else (Array[i]>=97 && Array[i]<=122);
+      Array[i]=Array[i]-32;
+  }
+  cout<<Array<<endl;
+  return 0;
+}
