@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+int main() {
+  int x;
+  cout<<"Enter checking number:";
+  cin>>x;
+  cout<<endl;
+  int number=2;
+  while(number<x){
+    if(x%number==0){
+     cout<<"Number is prime";
+      return 0;
+    }
+    number++;
+  }
+  cout<<"Number is odd"<<endl;
+  return 0;
+}

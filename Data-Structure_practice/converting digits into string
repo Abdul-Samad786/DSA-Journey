@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+void digit_convert(string arr[],int nmbrs){
+  if(nmbrs==0)
+    return;
+  int digits=nmbrs%10;
+  nmbrs=nmbrs/10;
+  digit_convert(arr, nmbrs);
+  cout<<arr[digits]<<" ";
+  
+}
+int main() {
+  string arr[10]={"zero","one","two","three","four","five","six","seven","eight","nine"};
+int a;
+cin>>a;
+digit_convert(arr,a);
+return 0;
+  
+}
