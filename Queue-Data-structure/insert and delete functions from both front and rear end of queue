@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+struct Queue{
+  int size;
+  int *Array;
+  int front;
+  int rear;
+Queue(int s){
+  size=s;
+  front=rear=-1;
+  Array=new int[size];
+}
+};
+int delete_from_front(Queue *q){
+  int a=-1;
+  if(q->front==q->rear)
+    cout<<"Queue is empty"<<endl;
+  else{
+    q->front++;
+    a=q->Array[q->front];}
+  return a;
+}
+void insert_from_last(Queue *q,int x){
+  int a=-1;
+  if(q->front==q->size-1)
+    cout<<"Queue is full"<<endl;
+  q->rear++;
+  q->Array[q->rear]=x;
+}
+void insert_from_front(Queue *q,int x){
+   if(q->front==-1){
+     cout<<"we cannot insert"<<endl;
+     return;}
+  q->Array[q->front]=x;
+  q->front--;
+}
+int delete_from_last(Queue *q){
+  int x=-1;
+  if(q->front==q->rear)
+    cout<<"Queue is empty"<<endl;
+  else{
+  x=q->Array[q->rear];
+  q->rear--;}
+  return x;
+}
+void display(Queue *q){
+  for(int i=q->front+1;i<=q->rear;i++)
+    cout<<q->Array[i]<<endl;
+}
+int main(){
+  Queue qu(6);
+  insert_from_last(&qu,10);
+  insert_from_last(&qu,20);
+  insert_from_last(&qu,30);
+  insert_from_last(&qu,40);
+  //cout<<"The deleting element is:"<<delete_from_front(&qu)<<endl;
+//  cout<<"The deleting element is:"<<delete_from_front(&qu)<<endl;
+ //insert_from_front(&qu,5);
+  //insert_from_front(&qu,2);
+  //insert_from_front(&qu,87);
+   cout<<"The last deleting element is:"<<delete_from_last(&qu)<<endl;
+  cout<<"The last deleting element is:"<<delete_from_last(&qu)<<endl;
+  insert_from_last(&qu,50);
+    cout<<"The deleting element is:"<<delete_from_front(&qu)<<endl;
+  insert_from_front(&qu, 30);
+  display(&qu);
+ 
+  return 0;
+}
