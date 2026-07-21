@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Family{
+public:
+  string father;
+  string mother;
+  int father_age;
+  void big(int age)
+{
+    if (age>18)
+      cout<<"he is young"<<endl;
+    else
+    cout<<"no"<<endl;
+  }
+};
+int main(){
+  Family *f;
+  f=new Family;
+  f->big(30);
+  return 0;
+}
