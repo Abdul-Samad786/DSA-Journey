@@ -1,0 +1,10 @@
+#include <fstream>
+#include <iostream>
+using namespace std;
+int main() {
+  ofstream fout;
+  fout.open("hello.txt");
+  fout<< "hello world" << endl;
+  fout.close();
+  return 0;
+}
