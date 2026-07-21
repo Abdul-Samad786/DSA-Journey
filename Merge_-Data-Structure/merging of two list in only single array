@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+void merging(int Array[],int l,int h,int n){
+  int B[15];
+  int mid=(l+h)/2;
+  int i=l,j=mid+1;
+  while(i<=mid&&j<=h){
+    if(Array[i]<Array[j])
+      B[l++]=Array[i++];
+    else if(Array[j]<Array[i])
+      B[l++]=Array[j++];
+  }
+  for(;i<=mid;i++)
+    B[l++]=Array[i];
+  for(;j<=h;j++)
+    B[l++]=Array[j];
+  for(int i=0;i<9;i++)
+    cout<<B[i]<<endl;
+}
+int main() {
+int A[]={1,4,6,8,10,3,5,9,11};
+  merging(A,0, 8,9);
+  return 0;
+}
