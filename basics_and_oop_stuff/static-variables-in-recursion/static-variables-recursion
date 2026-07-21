@@ -1,0 +1,16 @@
+include <iostream>
+using namespace std;
+int fun(int c){
+  static int m=0;
+  if  (c>0){
+  m++;
+  return fun(c-1)+m;
+  }
+  return 0;
+}
+int main(){
+ int x=5;
+  int r=fun(x);
+  cout<<r<<endl;
+  return 0;
+}

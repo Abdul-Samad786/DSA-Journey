@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+int fun(int c){
+  if  (c>0){
+  return fun(c-1)+c;
+  }
+  return 0;
+}
+int main(){
+ int x=6;
+  int r=fun(x);
+  cout<<r<<endl;
+  return 0;
+}
